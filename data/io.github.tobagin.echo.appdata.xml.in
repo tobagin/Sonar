@@ -56,6 +56,15 @@
   <update_contact>tobagin@example.com</update_contact>
   
   <releases>
+    <release version="1.0.2" date="2025-01-15">
+      <description>
+        <p>
+          Build fix release that removes improper icon installation causing
+          build failures. Cleans up icon hierarchy to follow freedesktop.org
+          standards by removing scalable PNG and symbolic SVG icons.
+        </p>
+      </description>
+    </release>
     <release version="1.0.0" date="2025-01-15">
       <description>
         <p>

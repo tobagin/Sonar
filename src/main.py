@@ -188,7 +188,7 @@ class EchoApplication(Adw.Application):
             application_name="Echo",
             application_icon="io.github.tobagin.echo",
             developer_name="Thiago Fernandes",
-            version="1.0.0",
+            version="1.0.2",
             developers=["Thiago Fernandes https://github.com/tobagin"],
             copyright="© 2025 Thiago Fernandes",
             license_type=Gtk.License.GPL_3_0,
