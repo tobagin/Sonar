@@ -7,13 +7,3 @@ foreach size : icon_sizes
     install_dir: join_paths(get_option('datadir'), 'icons', 'hicolor', size, 'apps')
   )
 endforeach
-
-install_data(
-  'hicolor/scalable/apps/io.github.tobagin.echo.png',
-  install_dir: join_paths(get_option('datadir'), 'icons', 'hicolor', 'scalable', 'apps')
-)
-
-install_data(
-  'hicolor/symbolic/apps/io.github.tobagin.echo-symbolic.svg',
-  install_dir: join_paths(get_option('datadir'), 'icons', 'hicolor', 'symbolic', 'apps')
-)
