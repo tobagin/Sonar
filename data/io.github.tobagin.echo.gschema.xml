@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schemalist>
+  <schema id="io.github.tobagin.echo" path="/io/github/tobagin/echo/">
+    
+    <!-- Window settings -->
+    <key name="window-width" type="i">
+      <default>800</default>
+      <summary>Window width</summary>
+      <description>Width of the main application window</description>
+    </key>
+    
+    <key name="window-height" type="i">
+      <default>600</default>
+      <summary>Window height</summary>
+      <description>Height of the main application window</description>
+    </key>
+    
+    <key name="window-maximized" type="b">
+      <default>false</default>
+      <summary>Window maximized state</summary>
+      <description>Whether the main window is maximized</description>
+    </key>
+    
+    <!-- Application settings -->
+    <key name="server-port" type="i">
+      <default>8000</default>
+      <summary>Server port</summary>
+      <description>Port number for the webhook server</description>
+    </key>
+    
+    <key name="auto-start-tunnel" type="b">
+      <default>false</default>
+      <summary>Auto-start tunnel</summary>
+      <description>Whether to automatically start the tunnel on application startup</description>
+    </key>
+    
+    <key name="max-requests" type="i">
+      <default>1000</default>
+      <summary>Maximum requests to store</summary>
+      <description>Maximum number of requests to keep in memory</description>
+    </key>
+    
+    <key name="ngrok-region" type="s">
+      <default>"us"</default>
+      <summary>Ngrok region</summary>
+      <description>Ngrok region to use for tunnels</description>
+    </key>
+    
+  </schema>
+</schemalist>

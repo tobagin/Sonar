@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop-application">
+  <id>io.github.tobagin.echo</id>
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_license>GPL-3.0-or-later</project_license>
+  <name>Echo</name>
+  <summary>Webhook inspector for developers</summary>
+  <description>
+    <p>
+      Echo is a desktop developer utility for capturing and inspecting webhook requests. 
+      It provides a modern, native GTK4 interface for debugging webhooks locally without 
+      complex setup or cloud dependencies. Perfect for testing API integrations and 
+      webhook workflows during development.
+    </p>
+    <p>
+      Accept webhook requests on any endpoint path with support for all HTTP methods.
+      Generate public URLs via ngrok integration for easy webhook testing. View real-time
+      requests with comprehensive history, search capabilities, and export functionality.
+    </p>
+  </description>
+  
+  <launchable type="desktop-id">io.github.tobagin.echo.desktop</launchable>
+  
+  <screenshots>
+    <screenshot type="default" xml:lang="en">
+      <image>https://raw.githubusercontent.com/tobagin/echo/main/screenshots/main-window-start-tunnel.png</image>
+      <caption>Main window ready to start webhook tunnel</caption>
+    </screenshot>
+    <screenshot xml:lang="en">
+      <image>https://raw.githubusercontent.com/tobagin/echo/main/screenshots/main-window-tunnel-started.png</image>
+      <caption>Main window with active tunnel showing public URL</caption>
+    </screenshot>
+    <screenshot xml:lang="en">
+      <image>https://raw.githubusercontent.com/tobagin/echo/main/screenshots/received-requests.png</image>
+      <caption>Received requests with multiple HTTP methods</caption>
+    </screenshot>
+    <screenshot xml:lang="en">
+      <image>https://raw.githubusercontent.com/tobagin/echo/main/screenshots/history.png</image>
+      <caption>Request history with search and filtering</caption>
+    </screenshot>
+    <screenshot xml:lang="en">
+      <image>https://raw.githubusercontent.com/tobagin/echo/main/screenshots/main-window-setup-required.png</image>
+      <caption>Initial setup for ngrok token configuration</caption>
+    </screenshot>
+    <screenshot xml:lang="en">
+      <image>https://raw.githubusercontent.com/tobagin/echo/main/screenshots/about.png</image>
+      <caption>About dialog with application information</caption>
+    </screenshot>
+  </screenshots>
+  
+  <url type="homepage">https://github.com/tobagin/echo</url>
+  <url type="bugtracker">https://github.com/tobagin/echo/issues</url>
+  <url type="help">https://github.com/tobagin/echo/wiki</url>
+  
+  <developer_name>tobagin</developer_name>
+  <update_contact>tobagin@example.com</update_contact>
+  
+  <releases>
+    <release version="1.0.0" date="2025-01-15">
+      <description>
+        <p>
+          First stable release of Echo featuring universal endpoint support for any webhook path 
+          and comprehensive request history management. Introduces persistent storage with search 
+          and filtering capabilities, plus export functionality in multiple formats.
+        </p>
+      </description>
+    </release>
+  </releases>
+  
+  <content_rating type="oars-1.1" />
+  
+  <categories>
+    <category>Development</category>
+    <category>Utility</category>
+  </categories>
+  
+  <keywords>
+    <keyword>webhook</keyword>
+    <keyword>developer</keyword>
+    <keyword>debugging</keyword>
+    <keyword>api</keyword>
+    <keyword>testing</keyword>
+  </keywords>
+  
+  <requires>
+    <display_length compare="ge">360</display_length>
+  </requires>
+  
+  <recommends>
+    <control>keyboard</control>
+    <control>pointing</control>
+    <control>touch</control>
+  </recommends>
+</component>

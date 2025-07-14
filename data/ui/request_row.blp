@@ -1,0 +1,131 @@
+using Gtk 4.0;
+using Adw 1;
+
+template $RequestRow : Adw.ExpanderRow {
+  title: bind template.method_path;
+  subtitle: bind template.timestamp_text;
+  
+  [prefix]
+  Gtk.Label method_label {
+    label: bind template.method;
+    width-chars: 8;
+    max-width-chars: 8;
+    ellipsize: end;
+    
+    styles ["tag"]
+  }
+  
+  [suffix]
+  Gtk.Button copy_button {
+    icon-name: "edit-copy-symbolic";
+    tooltip-text: _("Copy Request Data");
+    valign: center;
+    
+    styles ["flat"]
+  }
+  
+  Adw.ActionRow {
+    title: _("Method");
+    subtitle: bind template.method;
+    
+    [prefix]
+    Gtk.Image {
+      icon-name: "network-transmit-receive-symbolic";
+      valign: center;
+    }
+  }
+  
+  Adw.ActionRow {
+    title: _("Path");
+    subtitle: bind template.path;
+    
+    [prefix]
+    Gtk.Image {
+      icon-name: "folder-symbolic";
+      valign: center;
+    }
+  }
+  
+  Adw.ActionRow {
+    title: _("Content Type");
+    subtitle: bind template.content_type;
+    
+    [prefix]
+    Gtk.Image {
+      icon-name: "text-x-generic-symbolic";
+      valign: center;
+    }
+  }
+  
+  Adw.ActionRow {
+    title: _("Headers");
+    
+    [prefix]
+    Gtk.Image {
+      icon-name: "view-list-symbolic";
+      valign: center;
+    }
+    
+    [suffix]
+    Gtk.Button copy_headers_button {
+      icon-name: "edit-copy-symbolic";
+      tooltip-text: _("Copy Headers");
+      valign: center;
+      
+      styles ["flat"]
+    }
+  }
+  
+  Gtk.ScrolledWindow {
+    height-request: 240;
+    hscrollbar-policy: automatic;
+    vscrollbar-policy: automatic;
+    margin-top: 6;
+    margin-bottom: 6;
+    margin-start: 12;
+    margin-end: 12;
+    
+    child: Gtk.TextView headers_text {
+      editable: false;
+      cursor-visible: false;
+      monospace: true;
+      wrap-mode: word;
+    };
+  }
+  
+  Adw.ActionRow {
+    title: _("Body");
+    
+    [prefix]
+    Gtk.Image {
+      icon-name: "accessories-text-editor-symbolic";
+      valign: center;
+    }
+    
+    [suffix]
+    Gtk.Button copy_body_button {
+      icon-name: "edit-copy-symbolic";
+      tooltip-text: _("Copy Body");
+      valign: center;
+      
+      styles ["flat"]
+    }
+  }
+  
+  Gtk.ScrolledWindow {
+    height-request: 400;
+    hscrollbar-policy: automatic;
+    vscrollbar-policy: automatic;
+    margin-top: 6;
+    margin-bottom: 6;
+    margin-start: 12;
+    margin-end: 12;
+    
+    child: Gtk.TextView body_text {
+      editable: false;
+      cursor-visible: false;
+      monospace: true;
+      wrap-mode: word;
+    };
+  }
+}

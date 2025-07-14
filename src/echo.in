@@ -1,0 +1,21 @@
+#!/bin/bash
+
+# Configuration
+PYTHON="@PYTHON@"
+INSTALLED_PYTHONPATH="@PKGDATADIR@"
+LOCALEDIR="@LOCALEDIR@"
+
+# Debug information
+echo "Python executable: $PYTHON"
+echo "Installed Python path: $INSTALLED_PYTHONPATH"
+
+# Set up Python path
+export PYTHONPATH="$INSTALLED_PYTHONPATH:$PYTHONPATH"
+echo "Python path: $PYTHONPATH"
+
+# Set up locale environment
+export TEXTDOMAINDIR="$LOCALEDIR"
+export TEXTDOMAIN="echo"
+
+# Run the application
+exec "$PYTHON" -m echo.main "$@"

@@ -1,0 +1,370 @@
+using Gtk 4.0;
+using Adw 1;
+
+template $EchoWindow : Adw.ApplicationWindow {
+  default-width: 800;
+  default-height: 600;
+  
+  content: Adw.ToastOverlay toast_overlay {
+    child: Gtk.Box {
+      orientation: vertical;
+      
+      Adw.HeaderBar header_bar {
+        title-widget: Adw.WindowTitle {
+          title: _("Echo");
+          subtitle: _("Webhook Inspector");
+        };
+        
+        [start]
+        Gtk.Button header_history_button {
+          icon-name: "document-open-recent-symbolic";
+          tooltip-text: _("View History");
+          
+          styles ["flat"]
+        }
+        
+        Gtk.Button header_stop_button {
+          icon-name: "network-offline-symbolic";
+          tooltip-text: _("Stop Tunnel");
+          visible: false;
+          
+          styles ["destructive-action"]
+        }
+        
+        [end]
+        
+        Gtk.MenuButton primary_menu_button {
+          icon-name: "open-menu-symbolic";
+          tooltip-text: _("Main Menu");
+          menu-model: primary_menu;
+        }
+      }
+      
+      Adw.Banner status_banner {
+        title: _("Tunnel Status");
+        button-label: _("Copy URL");
+        revealed: false;
+      }
+      
+      Gtk.Stack main_stack {
+        transition-type: crossfade;
+        
+        Gtk.StackPage {
+          name: "empty";
+          title: _("Empty");
+          child: Adw.StatusPage empty_page {
+            icon-name: "network-wireless-symbolic";
+            title: _("No Requests Yet");
+            description: _("Start the tunnel and send webhook requests to see them here");
+            
+            child: Gtk.Box {
+              orientation: vertical;
+              spacing: 12;
+              halign: center;
+              
+              Gtk.Label url_label {
+                label: "";
+                selectable: true;
+                wrap: true;
+                justify: center;
+                
+                styles ["title-2"]
+              }
+              
+              Gtk.Box tunnel_controls {
+                orientation: horizontal;
+                spacing: 12;
+                halign: center;
+                
+                Gtk.Button setup_token_button {
+                  label: _("Setup Ngrok Token");
+                  visible: false;
+                  
+                  styles ["pill", "suggested-action"]
+                }
+                
+                Gtk.Box start_tunnel_container {
+                  orientation: horizontal;
+                  spacing: 8;
+                  visible: false;
+                  
+                  Gtk.Button start_tunnel_button {
+                    label: _("Start Tunnel");
+                    
+                    styles ["pill", "suggested-action"]
+                  }
+                  
+                  Gtk.Spinner tunnel_spinner {
+                    visible: false;
+                    spinning: false;
+                  }
+                }
+                
+                Gtk.Button copy_url_button {
+                  label: _("Copy URL");
+                  visible: false;
+                  
+                  styles ["pill"]
+                }
+                
+                Gtk.Button stop_tunnel_button {
+                  icon-name: "network-offline-symbolic";
+                  tooltip-text: _("Stop Tunnel");
+                  visible: false;
+                  
+                  styles ["pill", "destructive-action"]
+                }
+              }
+            };
+          };
+        }
+        
+        Gtk.StackPage {
+          name: "requests";
+          title: _("Requests");
+          child: Gtk.ScrolledWindow {
+            hscrollbar-policy: never;
+            vscrollbar-policy: automatic;
+            
+            child: Gtk.Box {
+              orientation: vertical;
+              spacing: 12;
+              margin-top: 12;
+              margin-bottom: 12;
+              margin-start: 6;
+              margin-end: 6;
+              
+              Gtk.Box {
+                orientation: horizontal;
+                spacing: 12;
+                margin-start: 6;
+                margin-end: 6;
+                
+                Gtk.Label {
+                  label: _("Received Requests");
+                  halign: start;
+                  hexpand: true;
+                  
+                  styles ["title-2"]
+                }
+                
+                Gtk.Box clear_container {
+                  orientation: horizontal;
+                  spacing: 8;
+                  
+                  Gtk.Button history_button {
+                    icon-name: "document-open-recent-symbolic";
+                    tooltip-text: _("View History");
+                    
+                    styles ["flat"]
+                  }
+                  
+                  Gtk.Button clear_button {
+                    icon-name: "edit-clear-symbolic";
+                    tooltip-text: _("Clear All Requests");
+                    
+                    styles ["flat"]
+                  }
+                  
+                  Gtk.Spinner clear_spinner {
+                    visible: false;
+                    spinning: false;
+                  }
+                }
+              }
+              
+              Gtk.ListBox request_list {
+                selection-mode: none;
+                hexpand: true;
+                vexpand: true;
+                
+                styles ["boxed-list", "separators"]
+              }
+            };
+          };
+        }
+        
+        Gtk.StackPage {
+          name: "history";
+          title: _("History");
+          child: Gtk.ScrolledWindow {
+            hscrollbar-policy: never;
+            vscrollbar-policy: automatic;
+            
+            child: Gtk.Box {
+              orientation: vertical;
+              spacing: 12;
+              margin-top: 12;
+              margin-bottom: 12;
+              margin-start: 6;
+              margin-end: 6;
+              
+              Gtk.Box {
+                orientation: horizontal;
+                spacing: 12;
+                margin-start: 6;
+                margin-end: 6;
+                
+                Gtk.Label {
+                  label: _("Request History");
+                  halign: start;
+                  hexpand: true;
+                  
+                  styles ["title-2"]
+                }
+                
+                Gtk.Box history_controls {
+                  orientation: horizontal;
+                  spacing: 8;
+                  
+                  Gtk.Button history_stats_button {
+                    icon-name: "chart-line-symbolic";
+                    tooltip-text: _("Show Statistics");
+                    
+                    styles ["flat"]
+                  }
+                  
+                  Gtk.Button export_history_button {
+                    icon-name: "document-save-symbolic";
+                    tooltip-text: _("Export History");
+                    
+                    styles ["flat"]
+                  }
+                  
+                  Gtk.Button back_to_requests_button {
+                    icon-name: "go-previous-symbolic";
+                    tooltip-text: _("Back");
+                    
+                    styles ["flat"]
+                  }
+                  
+                  Gtk.Button clear_history_button {
+                    icon-name: "user-trash-symbolic";
+                    tooltip-text: _("Clear All History");
+                    
+                    styles ["flat", "destructive-action"]
+                  }
+                }
+              }
+              
+              Gtk.Box {
+                orientation: horizontal;
+                spacing: 12;
+                margin-start: 6;
+                margin-end: 6;
+                
+                Gtk.SearchEntry history_search_entry {
+                  placeholder-text: _("Search history...");
+                  hexpand: true;
+                }
+                
+                Gtk.DropDown history_method_filter {
+                  tooltip-text: _("Filter by HTTP method");
+                  
+                  styles ["flat"]
+                }
+              }
+              
+              Gtk.ListBox history_list {
+                selection-mode: none;
+                hexpand: true;
+                vexpand: true;
+                
+                styles ["boxed-list", "separators"]
+              }
+            };
+          };
+        }
+      }
+    };
+  };
+}
+
+menu primary_menu {
+  section {
+    item {
+      label: _("_Preferences");
+      action: "app.preferences";
+    }
+    
+    item {
+      label: _("_About Echo");
+      action: "app.about";
+    }
+  }
+  
+  section {
+    item {
+      label: _("_View History");
+      action: "app.view-history";
+    }
+    
+    item {
+      label: _("_Copy URL");
+      action: "app.copy-url";
+    }
+    
+    item {
+      label: _("_Toggle Tunnel");
+      action: "app.toggle-tunnel";
+    }
+    
+    item {
+      label: _("_Clear Requests");
+      action: "app.clear-requests";
+    }
+  }
+  
+  section {
+    submenu {
+      label: _("_Keyboard Shortcuts");
+      
+      item {
+        label: _("Quit");
+        action: "app.quit";
+      }
+      
+      item {
+        label: _("Preferences");
+        action: "app.preferences";
+      }
+      
+      item {
+        label: _("Copy URL");
+        action: "app.copy-url";
+      }
+      
+      item {
+        label: _("Toggle Tunnel");
+        action: "app.toggle-tunnel";
+      }
+      
+      item {
+        label: _("Clear Requests");
+        action: "app.clear-requests";
+      }
+      
+      item {
+        label: _("Copy Request");
+        action: "app.copy-request";
+      }
+      
+      item {
+        label: _("Refresh");
+        action: "app.refresh";
+      }
+      
+      item {
+        label: _("Toggle Fullscreen");
+        action: "app.toggle-fullscreen";
+      }
+    }
+  }
+  
+  section {
+    item {
+      label: _("_Quit");
+      action: "app.quit";
+    }
+  }
+}

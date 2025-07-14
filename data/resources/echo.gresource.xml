@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gresources>
+  <gresource prefix="/io/github/tobagin/echo">
+    <file preprocess="xml-stripblanks" alias="ui/main_window.ui">main_window.ui</file>
+    <file preprocess="xml-stripblanks" alias="ui/request_row.ui">request_row.ui</file>
+  </gresource>
+</gresources>
