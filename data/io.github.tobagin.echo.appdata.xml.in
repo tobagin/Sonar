@@ -65,6 +65,15 @@
         </p>
       </description>
     </release>
+    <release version="1.0.1" date="2025-01-15">
+      <description>
+        <p>
+          Icon cleanup maintenance release that removes improper scalable PNG
+          and symbolic SVG icons to follow freedesktop.org icon standards.
+          Updates all version references throughout the application.
+        </p>
+      </description>
+    </release>
     <release version="1.0.0" date="2025-01-15">
       <description>
         <p>
