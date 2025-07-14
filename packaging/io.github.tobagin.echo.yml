@@ -112,4 +112,5 @@ modules:
     sources:
       - type: git
         url: https://github.com/tobagin/echo.git
-        tag: v0.1.0
+        tag: v1.0.0
+        commit: d3ed24b5736571b9c7cd3c5ce27970ff6cb6807a
