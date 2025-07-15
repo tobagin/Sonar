@@ -1,7 +1,7 @@
 using Gtk 4.0;
 using Adw 1;
 
-template $EchoWindow : Adw.ApplicationWindow {
+template $SonarWindow : Adw.ApplicationWindow {
   default-width: 800;
   default-height: 600;
   
@@ -11,7 +11,7 @@ template $EchoWindow : Adw.ApplicationWindow {
       
       Adw.HeaderBar header_bar {
         title-widget: Adw.WindowTitle {
-          title: _("Echo");
+          title: _("Sonar");
           subtitle: _("Webhook Inspector");
         };
         
@@ -288,7 +288,7 @@ menu primary_menu {
     }
     
     item {
-      label: _("_About Echo");
+      label: _("_About Sonar");
       action: "app.about";
     }
   }

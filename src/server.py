@@ -25,7 +25,7 @@ class WebhookServer:
     def __init__(self, request_storage: RequestStorage) -> None:
         """Initialize the webhook server."""
         self.storage = request_storage
-        self.app = FastAPI(title="Echo Webhook Server", version="1.0.2")
+        self.app = FastAPI(title="Sonar Webhook Server", version="1.0.4")
         self.server: uvicorn.Server | None = None
         self.server_thread: threading.Thread | None = None
         self.port = 8000
@@ -50,8 +50,8 @@ class WebhookServer:
         async def root() -> dict[str, str]:
             """Root endpoint."""
             return {
-                "message": "Echo Webhook Server",
-                "version": "1.0.2",
+                "message": "Sonar Webhook Server",
+                "version": "1.0.4",
                 "info": "Accepts requests on any endpoint path",
                 "supported_methods": ["GET", "POST", "PUT", "DELETE", "PATCH", "HEAD", "OPTIONS"],
                 "examples": ["/webhook", "/api/events", "/stripe-webhook", "/github-webhook"]

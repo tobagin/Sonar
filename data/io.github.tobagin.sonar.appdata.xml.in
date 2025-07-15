@@ -56,6 +56,15 @@
   <update_contact>tobagin@example.com</update_contact>
   
   <releases>
+    <release version="1.0.4" date="2025-07-15">
+      <description>
+        <p>
+          Bug fix release: Fixed UI template class name mismatch that was causing
+          runtime errors in the Flatpak build. The template definition now correctly
+          uses SonarWindow instead of the legacy EchoWindow reference.
+        </p>
+      </description>
+    </release>
     <release version="1.0.3" date="2025-01-15">
       <description>
         <p>

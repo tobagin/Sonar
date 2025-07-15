@@ -115,7 +115,7 @@ class ErrorHandler:
                 "suggestions": [
                     "Sign up for a free account at ngrok.com",
                     "Copy your auth token from the ngrok dashboard",
-                    "Add the token in Echo's settings"
+                    "Add the token in Sonar's settings"
                 ],
                 "action_label": "Setup Token",
                 "action_callback": "setup_ngrok_token"
@@ -136,8 +136,8 @@ class ErrorHandler:
                 "message": "The selected port is already being used by another application.",
                 "suggestions": [
                     "Close other applications using this port",
-                    "Try restarting Echo",
-                    "Check if another instance of Echo is running"
+                    "Try restarting Sonar",
+                    "Check if another instance of Sonar is running"
                 ]
             },
             r"rate.*limit|too.*many.*requests": {
@@ -157,7 +157,7 @@ class ErrorHandler:
                 "suggestions": [
                     "Install ngrok from ngrok.com",
                     "Ensure ngrok is in your system PATH",
-                    "Try restarting Echo after installation"
+                    "Try restarting Sonar after installation"
                 ]
             },
             
@@ -165,9 +165,9 @@ class ErrorHandler:
             r"permission.*denied|access.*denied": {
                 "category": ErrorCategory.SYSTEM,
                 "title": "Permission Denied",
-                "message": "Echo doesn't have permission to perform this action.",
+                "message": "Sonar doesn't have permission to perform this action.",
                 "suggestions": [
-                    "Run Echo with appropriate permissions",
+                    "Run Sonar with appropriate permissions",
                     "Check file and directory permissions",
                     "Try running as administrator if necessary"
                 ]

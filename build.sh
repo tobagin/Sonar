@@ -45,7 +45,7 @@ show_help() {
     cat << EOF
 Usage: $0 [OPTIONS]
 
-Build the Echo webhook inspector application using Flatpak.
+Build the Sonar webhook inspector application using Flatpak.
 
 OPTIONS:
     --dev               Build from local sources (development mode)

@@ -1,5 +1,5 @@
 """
-Data models for the Echo webhook inspector application.
+Data models for the Sonar webhook inspector application.
 """
 
 import json
@@ -399,7 +399,7 @@ class RequestStorage:
         """Export history as plain text."""
         try:
             with open(filepath, 'w', encoding='utf-8') as f:
-                f.write("Echo Webhook Request History\n")
+                f.write("Sonar Webhook Request History\n")
                 f.write("=" * 50 + "\n\n")
                 
                 for i, request in enumerate(self._history, 1):
