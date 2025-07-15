@@ -829,44 +829,42 @@ class SonarWindow(Adw.ApplicationWindow):
         dialog.present()
     
     def _show_export_dialog(self) -> None:
-        """Show a file chooser dialog to export history."""
+        """Show a file chooser dialog to export history using portal."""
         from gi.repository import Gio
+        from datetime import datetime
         
-        # Create file chooser dialog
-        dialog = Gtk.FileChooserDialog(
-            title="Export History",
-            transient_for=self,
-            action=Gtk.FileChooserAction.SAVE
-        )
-        
-        dialog.add_button("Cancel", Gtk.ResponseType.CANCEL)
-        dialog.add_button("Export", Gtk.ResponseType.ACCEPT)
-        dialog.set_default_response(Gtk.ResponseType.ACCEPT)
-        
-        # Add file filters
+        # Create file filters
         json_filter = Gtk.FileFilter()
         json_filter.set_name("JSON files")
         json_filter.add_pattern("*.json")
-        dialog.add_filter(json_filter)
         
         csv_filter = Gtk.FileFilter()
         csv_filter.set_name("CSV files")
         csv_filter.add_pattern("*.csv")
-        dialog.add_filter(csv_filter)
         
         txt_filter = Gtk.FileFilter()
         txt_filter.set_name("Text files")
         txt_filter.add_pattern("*.txt")
-        dialog.add_filter(txt_filter)
+        
+        # Create filter list
+        filter_list = Gio.ListStore()
+        filter_list.append(json_filter)
+        filter_list.append(csv_filter)
+        filter_list.append(txt_filter)
+        
+        # Create file dialog (GTK4 portal-compatible)
+        dialog = Gtk.FileDialog()
+        dialog.set_title("Export History")
+        dialog.set_filters(filter_list)
+        dialog.set_default_filter(json_filter)
         
         # Set default filename
-        from datetime import datetime
         timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-        dialog.set_current_name(f"echo_history_{timestamp}.json")
+        dialog.set_initial_name(f"sonar_history_{timestamp}.json")
         
-        def on_response(dialog, response):
-            if response == Gtk.ResponseType.ACCEPT:
-                file = dialog.get_file()
+        def on_save_finish(dialog, result):
+            try:
+                file = dialog.save_finish(result)
                 if file:
                     filepath = file.get_path()
                     # Determine format from extension
@@ -883,11 +881,13 @@ class SonarWindow(Adw.ApplicationWindow):
                         self._show_toast(f"History exported to {filepath}", timeout=3)
                     else:
                         self._show_toast("Failed to export history", timeout=3)
-            
-            dialog.destroy()
+            except Exception as e:
+                # User cancelled or error occurred
+                if "dismissed" not in str(e).lower():
+                    logger.warning(f"Export dialog error: {e}")
+                    self._show_toast("Export cancelled", timeout=2)
         
-        dialog.connect("response", on_response)
-        dialog.present()
+        dialog.save(self, None, on_save_finish)
 
     def _show_token_setup_dialog(self) -> None:
         """Show dialog to help user set up ngrok auth token."""
