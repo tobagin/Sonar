@@ -111,6 +111,6 @@ modules:
     buildsystem: meson
     sources:
       - type: git
-        url: https://github.com/tobagin/sonar.git
-        tag: v1.0.3
-        commit: 2282873f3905433174a16d8d64cfe477ca7380d5
+        url: https://github.com/tobagin/Sonar.git
+        tag: v1.0.4
+        commit: 64db5183e19461b1af1c6de4db004ea7cefc5b21
