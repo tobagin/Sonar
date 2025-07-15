@@ -154,7 +154,7 @@ class TestWebhookServer:
         assert response.status_code == 200
         data = response.json()
         assert data["message"] == "Sonar Webhook Server"
-        assert data["version"] == "1.0.4"
+        assert data["version"] == "1.0.5"
         assert "/webhook" in data["endpoints"]
     
     def test_health_endpoint(self):

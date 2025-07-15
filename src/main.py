@@ -188,7 +188,7 @@ class SonarApplication(Adw.Application):
             application_name="Sonar",
             application_icon="io.github.tobagin.sonar",
             developer_name="Thiago Fernandes",
-            version="1.0.4",
+            version="1.0.5",
             developers=["Thiago Fernandes https://github.com/tobagin"],
             copyright="© 2025 Thiago Fernandes",
             license_type=Gtk.License.GPL_3_0,

@@ -56,6 +56,16 @@
   <update_contact>tobagin@example.com</update_contact>
   
   <releases>
+    <release version="1.0.5" date="2025-07-15">
+      <description>
+        <p>
+          UI and portal improvements: Updated export functionality to use Flatpak
+          portal for better sandboxing. Fixed statistics button icon display
+          issue by replacing unavailable chart-line-symbolic with standard
+          dialog-information-symbolic icon.
+        </p>
+      </description>
+    </release>
     <release version="1.0.4" date="2025-07-15">
       <description>
         <p>

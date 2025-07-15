@@ -25,7 +25,7 @@ class WebhookServer:
     def __init__(self, request_storage: RequestStorage) -> None:
         """Initialize the webhook server."""
         self.storage = request_storage
-        self.app = FastAPI(title="Sonar Webhook Server", version="1.0.4")
+        self.app = FastAPI(title="Sonar Webhook Server", version="1.0.5")
         self.server: uvicorn.Server | None = None
         self.server_thread: threading.Thread | None = None
         self.port = 8000
