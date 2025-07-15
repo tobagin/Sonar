@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <component type="desktop-application">
-  <id>io.github.tobagin.echo</id>
+  <id>io.github.tobagin.sonar</id>
   <metadata_license>CC0-1.0</metadata_license>
   <project_license>GPL-3.0-or-later</project_license>
-  <name>Echo</name>
+  <name>Sonar</name>
   <summary>Webhook inspector for developers</summary>
   <description>
     <p>
-      Echo is a desktop developer utility for capturing and inspecting webhook requests. 
+      Sonar is a desktop developer utility for capturing and inspecting webhook requests. 
       It provides a modern, native GTK4 interface for debugging webhooks locally without 
       complex setup or cloud dependencies. Perfect for testing API integrations and 
       webhook workflows during development.
@@ -19,43 +19,52 @@
     </p>
   </description>
   
-  <launchable type="desktop-id">io.github.tobagin.echo.desktop</launchable>
+  <launchable type="desktop-id">io.github.tobagin.sonar.desktop</launchable>
   
   <screenshots>
     <screenshot type="default" xml:lang="en">
-      <image>https://raw.githubusercontent.com/tobagin/echo/main/screenshots/main-window-start-tunnel.png</image>
+      <image>https://raw.githubusercontent.com/tobagin/sonar/main/screenshots/main-window-start-tunnel.png</image>
       <caption>Main window ready to start webhook tunnel</caption>
     </screenshot>
     <screenshot xml:lang="en">
-      <image>https://raw.githubusercontent.com/tobagin/echo/main/screenshots/main-window-tunnel-started.png</image>
+      <image>https://raw.githubusercontent.com/tobagin/sonar/main/screenshots/main-window-tunnel-started.png</image>
       <caption>Main window with active tunnel showing public URL</caption>
     </screenshot>
     <screenshot xml:lang="en">
-      <image>https://raw.githubusercontent.com/tobagin/echo/main/screenshots/received-requests.png</image>
+      <image>https://raw.githubusercontent.com/tobagin/sonar/main/screenshots/received-requests.png</image>
       <caption>Received requests with multiple HTTP methods</caption>
     </screenshot>
     <screenshot xml:lang="en">
-      <image>https://raw.githubusercontent.com/tobagin/echo/main/screenshots/history.png</image>
+      <image>https://raw.githubusercontent.com/tobagin/sonar/main/screenshots/history.png</image>
       <caption>Request history with search and filtering</caption>
     </screenshot>
     <screenshot xml:lang="en">
-      <image>https://raw.githubusercontent.com/tobagin/echo/main/screenshots/main-window-setup-required.png</image>
+      <image>https://raw.githubusercontent.com/tobagin/sonar/main/screenshots/main-window-setup-required.png</image>
       <caption>Initial setup for ngrok token configuration</caption>
     </screenshot>
     <screenshot xml:lang="en">
-      <image>https://raw.githubusercontent.com/tobagin/echo/main/screenshots/about.png</image>
+      <image>https://raw.githubusercontent.com/tobagin/sonar/main/screenshots/about.png</image>
       <caption>About dialog with application information</caption>
     </screenshot>
   </screenshots>
   
-  <url type="homepage">https://github.com/tobagin/echo</url>
-  <url type="bugtracker">https://github.com/tobagin/echo/issues</url>
-  <url type="help">https://github.com/tobagin/echo/wiki</url>
+  <url type="homepage">https://github.com/tobagin/sonar</url>
+  <url type="bugtracker">https://github.com/tobagin/sonar/issues</url>
+  <url type="help">https://github.com/tobagin/sonar/wiki</url>
   
   <developer_name>tobagin</developer_name>
   <update_contact>tobagin@example.com</update_contact>
   
   <releases>
+    <release version="1.0.3" date="2025-01-15">
+      <description>
+        <p>
+          Major rebranding release: Echo has been renamed to Sonar. This release
+          includes updated application ID, icons, and all references throughout
+          the codebase. All functionality remains the same with improved branding.
+        </p>
+      </description>
+    </release>
     <release version="1.0.2" date="2025-01-15">
       <description>
         <p>
@@ -77,7 +86,7 @@
     <release version="1.0.0" date="2025-01-15">
       <description>
         <p>
-          First stable release of Echo featuring universal endpoint support for any webhook path 
+          First stable release of Sonar featuring universal endpoint support for any webhook path 
           and comprehensive request history management. Introduces persistent storage with search 
           and filtering capabilities, plus export functionality in multiple formats.
         </p>

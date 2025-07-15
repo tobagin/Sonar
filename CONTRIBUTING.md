@@ -1,6 +1,6 @@
-# Contributing to Echo
+# Contributing to Sonar
 
-Thank you for your interest in contributing to Echo! This guide will help you get started with contributing to the project.
+Thank you for your interest in contributing to Sonar! This guide will help you get started with contributing to the project.
 
 ## Table of Contents
 
@@ -34,8 +34,8 @@ Before contributing, make sure you have:
 
 1. **Fork and Clone the Repository**
    ```bash
-   git clone https://github.com/YOUR_USERNAME/echo.git
-   cd echo
+   git clone https://github.com/YOUR_USERNAME/sonar.git
+   cd sonar
    ```
 
 2. **Install Development Dependencies**
@@ -54,7 +54,7 @@ Before contributing, make sure you have:
 
 4. **Run the Application**
    ```bash
-   flatpak run io.github.tobagin.echo
+   flatpak run io.github.tobagin.sonar
    ```
 
 ## Contributing Guidelines
@@ -198,7 +198,7 @@ Use conventional commits format:
 ### Bug Reports
 
 Use the bug report template and include:
-- Echo version
+- Sonar version
 - Operating system and version
 - GTK4/Libadwaita versions
 - Steps to reproduce
@@ -280,4 +280,4 @@ Contributors will be recognized in:
 - About dialog credits
 - GitHub contributor list
 
-Thank you for contributing to Echo! 🎉
+Thank you for contributing to Sonar! 🎉

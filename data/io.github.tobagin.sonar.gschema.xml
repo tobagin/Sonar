@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <schemalist>
-  <schema id="io.github.tobagin.echo" path="/io/github/tobagin/echo/">
+  <schema id="io.github.tobagin.sonar" path="/io/github/tobagin/sonar/">
     
     <!-- Window settings -->
     <key name="window-width" type="i">

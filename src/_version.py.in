@@ -1,5 +1,5 @@
 """
-Version information for Echo.
+Version information for Sonar.
 """
 
 __version__ = "@VERSION@"

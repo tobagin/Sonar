@@ -1,10 +1,10 @@
-# Echo
+# Sonar
 
 **A modern desktop webhook inspector for developers**
 
-Echo is a native GTK4 application that provides a beautiful, intuitive interface for capturing and inspecting webhook requests during development. Built with modern technologies and following GNOME design patterns, Echo makes webhook debugging simple and efficient.
+Sonar is a native GTK4 application that provides a beautiful, intuitive interface for capturing and inspecting webhook requests during development. Built with modern technologies and following GNOME design patterns, Sonar makes webhook debugging simple and efficient.
 
-![Echo Screenshot](screenshot.png)
+![Sonar Screenshot](screenshot.png)
 
 ## ✨ Features
 
@@ -23,11 +23,11 @@ Echo is a native GTK4 application that provides a beautiful, intuitive interface
 
 ```bash
 # Install from Flathub (coming soon)
-flatpak install flathub io.github.tobagin.echo
+flatpak install flathub io.github.tobagin.sonar
 
 # Or build locally
-git clone https://github.com/tobagin/echo.git
-cd echo
+git clone https://github.com/tobagin/sonar.git
+cd sonar
 ./build.sh --dev --install
 ```
 
@@ -41,8 +41,8 @@ cd echo
 - Blueprint compiler
 
 ```bash
-git clone https://github.com/tobagin/echo.git
-cd echo
+git clone https://github.com/tobagin/sonar.git
+cd sonar
 meson setup builddir
 meson compile -C builddir
 meson install -C builddir
@@ -52,7 +52,7 @@ meson install -C builddir
 
 ### 1. Install ngrok (Required)
 
-Echo uses ngrok to create public URLs for webhook testing:
+Sonar uses ngrok to create public URLs for webhook testing:
 
 ```bash
 # Download from https://ngrok.com/download
@@ -65,13 +65,13 @@ brew install ngrok/ngrok/ngrok  # macOS
 
 1. Sign up at [ngrok.com](https://ngrok.com) (free account available)
 2. Get your auth token from the dashboard
-3. Launch Echo and click "Setup Ngrok Token" to configure
+3. Launch Sonar and click "Setup Ngrok Token" to configure
 
 ## 📖 Usage
 
 ### Basic Workflow
 
-1. **Start Echo** - Launch the application from your app menu or terminal
+1. **Start Sonar** - Launch the application from your app menu or terminal
 2. **Start Tunnel** - Click "Start Tunnel" to create a public URL
 3. **Configure Webhook** - Copy the public URL and configure it in your webhook provider
 4. **Inspect Requests** - View incoming webhooks in real-time with full details
@@ -122,8 +122,8 @@ Each webhook request shows:
 
 ```bash
 # Clone and setup
-git clone https://github.com/tobagin/echo.git
-cd echo
+git clone https://github.com/tobagin/sonar.git
+cd sonar
 
 # Install development dependencies
 pip install -e ".[dev]"
@@ -142,7 +142,7 @@ mypy src/
 ### Project Structure
 
 ```
-echo/
+sonar/
 ├── src/                    # Python source code
 │   ├── main.py            # Application entry point
 │   ├── main_window.py     # Main window implementation
@@ -161,7 +161,7 @@ echo/
 
 ### Building UI
 
-Echo uses Blueprint for UI definition:
+Sonar uses Blueprint for UI definition:
 
 ```bash
 # Compile Blueprint files
@@ -179,7 +179,7 @@ Contributions are welcome! Please see our [Contributing Guide](CONTRIBUTING.md) 
 
 - **Bugs**: Use the [bug report template](.github/ISSUE_TEMPLATE/bug_report.md)
 - **Features**: Use the [feature request template](.github/ISSUE_TEMPLATE/feature_request.md)
-- **Questions**: Start a [discussion](https://github.com/tobagin/echo/discussions)
+- **Questions**: Start a [discussion](https://github.com/tobagin/sonar/discussions)
 
 ### Development Guidelines
 
@@ -191,7 +191,7 @@ Contributions are welcome! Please see our [Contributing Guide](CONTRIBUTING.md) 
 
 ## 📄 License
 
-Echo is licensed under the [GNU General Public License v3.0](LICENSE).
+Sonar is licensed under the [GNU General Public License v3.0](LICENSE).
 
 ## 🙏 Acknowledgments
 
@@ -202,9 +202,9 @@ Echo is licensed under the [GNU General Public License v3.0](LICENSE).
 
 ## 📞 Support
 
-- **Documentation**: [Wiki](https://github.com/tobagin/echo/wiki)
-- **Issues**: [GitHub Issues](https://github.com/tobagin/echo/issues)
-- **Discussions**: [GitHub Discussions](https://github.com/tobagin/echo/discussions)
+- **Documentation**: [Wiki](https://github.com/tobagin/sonar/wiki)
+- **Issues**: [GitHub Issues](https://github.com/tobagin/sonar/issues)
+- **Discussions**: [GitHub Discussions](https://github.com/tobagin/sonar/discussions)
 - **Email**: tobagin@example.com
 
 ---

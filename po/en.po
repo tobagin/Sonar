@@ -1,11 +1,11 @@
-# English translation for Echo
+# English translation for Sonar
 # Copyright (C) 2025 tobagin
-# This file is distributed under the same license as the echo package.
+# This file is distributed under the same license as the sonar package.
 # tobagin <tobagin@example.com>, 2025.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: echo 0.1.0\n"
+"Project-Id-Version: sonar 1.0.3\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-01-01 12:00+0000\n"
 "PO-Revision-Date: 2025-01-01 12:00+0000\n"
@@ -16,9 +16,9 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-# Basic Echo messages
-msgid "Echo"
-msgstr "Echo"
+# Basic Sonar messages
+msgid "Sonar"
+msgstr "Sonar"
 
 msgid "Webhook Inspector"
 msgstr "Webhook Inspector"

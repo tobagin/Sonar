@@ -19,7 +19,7 @@ from .input_sanitizer import sanitize_for_display  # noqa: E402
 logger = logging.getLogger(__name__)
 
 
-@Gtk.Template(resource_path="/io/github/tobagin/echo/ui/request_row.ui")
+@Gtk.Template(resource_path="/io/github/tobagin/sonar/ui/request_row.ui")
 class RequestRow(Adw.ExpanderRow):
     """Widget for displaying a single webhook request."""
 

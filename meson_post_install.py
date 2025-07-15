@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Post-install script for Echo.
+Post-install script for Sonar.
 """
 
 import os

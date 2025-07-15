@@ -1,7 +1,7 @@
 # Desktop file
 desktop_file = i18n.merge_file(
-  input: 'io.github.tobagin.echo.desktop.in',
-  output: 'io.github.tobagin.echo.desktop',
+  input: 'io.github.tobagin.sonar.desktop.in',
+  output: 'io.github.tobagin.sonar.desktop',
   type: 'desktop',
   po_dir: '../po',
   install: true,
@@ -18,8 +18,8 @@ endif
 
 # AppData file
 appdata_file = i18n.merge_file(
-  input: 'io.github.tobagin.echo.appdata.xml.in',
-  output: 'io.github.tobagin.echo.appdata.xml',
+  input: 'io.github.tobagin.sonar.appdata.xml.in',
+  output: 'io.github.tobagin.sonar.appdata.xml',
   po_dir: '../po',
   install: true,
   install_dir: join_paths(get_option('datadir'), 'metainfo')
@@ -34,7 +34,7 @@ if appstream_util.found()
 endif
 
 # GSettings schema
-install_data('io.github.tobagin.echo.gschema.xml',
+install_data('io.github.tobagin.sonar.gschema.xml',
   install_dir: join_paths(get_option('datadir'), 'glib-2.0/schemas')
 )
 
@@ -61,13 +61,13 @@ endforeach
 
 # Generate GResource file
 resources = gnome.compile_resources(
-  'echo-resources',
-  'resources/echo.gresource.xml',
+  'sonar-resources',
+  'resources/sonar.gresource.xml',
   dependencies: ui_files,
   source_dir: meson.current_build_dir(),
   gresource_bundle: true,
   install: true,
-  install_dir: join_paths(get_option('datadir'), 'echo')
+  install_dir: join_paths(get_option('datadir'), 'sonar')
 )
 
 # Icons
@@ -75,8 +75,8 @@ subdir('icons')
 
 # Install compiled executable
 configure_file(
-  input: join_paths('..', 'src', 'echo.in'),
-  output: 'echo',
+  input: join_paths('..', 'src', 'sonar.in'),
+  output: 'sonar',
   configuration: conf,
   install: true,
   install_dir: get_option('bindir'),

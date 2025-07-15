@@ -15,7 +15,7 @@ echo "Python path: $PYTHONPATH"
 
 # Set up locale environment
 export TEXTDOMAINDIR="$LOCALEDIR"
-export TEXTDOMAIN="echo"
+export TEXTDOMAIN="sonar"
 
 # Run the application
-exec "$PYTHON" -m echo.main "$@"
+exec "$PYTHON" -m sonar.main "$@"

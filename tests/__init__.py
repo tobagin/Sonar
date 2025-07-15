@@ -1,3 +1,3 @@
 """
-Test suite for Echo webhook inspector.
+Test suite for Sonar webhook inspector.
 """

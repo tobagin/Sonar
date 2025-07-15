@@ -1,5 +1,5 @@
-project('echo', 'c',
-  version: '1.0.2',
+project('sonar', 'c',
+  version: '1.0.3',
   meson_version: '>= 0.62.0',
   default_options: [ 'warning_level=2', 'werror=false', ],
 )
@@ -23,10 +23,10 @@ if not blueprint_compiler.found()
 endif
 
 # Project configuration
-project_id = 'io.github.tobagin.echo'
-project_name = 'Echo'
+project_id = 'io.github.tobagin.sonar'
+project_name = 'Sonar'
 pkgdatadir = join_paths(get_option('prefix'), get_option('datadir'), meson.project_name())
-moduledir = join_paths(pkgdatadir, 'echo')
+moduledir = join_paths(pkgdatadir, 'sonar')
 localedir = join_paths(get_option('prefix'), get_option('localedir'))
 
 # Configuration data
@@ -56,7 +56,7 @@ python3.install_sources([
   'src/error_dialog.py',
   'src/input_sanitizer.py',
   'src/_version.py',
-], subdir: 'echo')
+], subdir: 'sonar')
 
 # Post-install script
 gnome.post_install(

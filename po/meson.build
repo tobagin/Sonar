@@ -1,4 +1,4 @@
-i18n.gettext('echo',
+i18n.gettext('sonar',
   args: [
     '--directory=' + meson.project_source_root(),
     '--from-code=UTF-8',

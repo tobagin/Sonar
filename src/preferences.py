@@ -1,5 +1,5 @@
 """
-Preferences dialog for Echo application.
+Preferences dialog for Sonar application.
 """
 
 import logging
@@ -17,7 +17,7 @@ logger = logging.getLogger(__name__)
 
 
 class PreferencesDialog(Adw.PreferencesDialog):
-    """Preferences dialog for the Echo application."""
+    """Preferences dialog for the Sonar application."""
 
     def __init__(self, parent: Optional[Gtk.Widget] = None, tunnel_manager=None, ui_update_callback=None) -> None:
         """Initialize the preferences dialog."""
@@ -124,7 +124,7 @@ class PreferencesDialog(Adw.PreferencesDialog):
         """Save token to a config file."""
         try:
             # Create .config directory if it doesn't exist
-            config_dir = os.path.expanduser("~/.config/echo")
+            config_dir = os.path.expanduser("~/.config/sonar")
             os.makedirs(config_dir, exist_ok=True)
             
             # Write token to config file
@@ -139,7 +139,7 @@ class PreferencesDialog(Adw.PreferencesDialog):
     def _remove_from_config_file(self) -> None:
         """Remove token from config file."""
         try:
-            config_file = os.path.expanduser("~/.config/echo/config")
+            config_file = os.path.expanduser("~/.config/sonar/config")
             if os.path.exists(config_file):
                 os.remove(config_file)
                 logger.info(f"Auth token config file removed: {config_file}")

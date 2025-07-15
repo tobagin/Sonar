@@ -1,5 +1,5 @@
 """
-Main window implementation for Echo.
+Main window implementation for Sonar.
 """
 
 import logging
@@ -23,11 +23,11 @@ from .error_dialog import show_error_dialog, show_error_toast  # noqa: E402
 logger = logging.getLogger(__name__)
 
 
-@Gtk.Template(resource_path="/io/github/tobagin/echo/ui/main_window.ui")
-class EchoWindow(Adw.ApplicationWindow):
-    """Main window for the Echo application."""
+@Gtk.Template(resource_path="/io/github/tobagin/sonar/ui/main_window.ui")
+class SonarWindow(Adw.ApplicationWindow):
+    """Main window for the Sonar application."""
 
-    __gtype_name__ = "EchoWindow"
+    __gtype_name__ = "SonarWindow"
 
     # Template children
     toast_overlay: Adw.ToastOverlay = Gtk.Template.Child()

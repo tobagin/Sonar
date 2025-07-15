@@ -1,5 +1,5 @@
 """
-Main entry point for the Echo application.
+Main entry point for the Sonar application.
 """
 
 import sys

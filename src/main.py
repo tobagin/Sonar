@@ -1,5 +1,5 @@
 """
-Main application module for Echo.
+Main application module for Sonar.
 """
 
 import logging
@@ -19,12 +19,12 @@ def _load_resources():
     """Load application resources using karere-style multi-path approach."""
     # Multiple potential resource paths
     resource_paths = [
-        '/app/lib/python3.12/site-packages/echo-resources.gresource',
-        '/app/share/echo/echo-resources.gresource',
-        '/usr/share/echo/echo-resources.gresource',
-        os.path.join(os.path.dirname(__file__), '..', '..', 'builddir', 'data', 'echo-resources.gresource'),
-        os.path.join(os.path.dirname(__file__), '..', '..', 'data', 'echo-resources.gresource'),
-        'data/echo-resources.gresource'  # Development fallback
+        '/app/lib/python3.12/site-packages/sonar-resources.gresource',
+        '/app/share/sonar/sonar-resources.gresource',
+        '/usr/share/sonar/sonar-resources.gresource',
+        os.path.join(os.path.dirname(__file__), '..', '..', 'builddir', 'data', 'sonar-resources.gresource'),
+        os.path.join(os.path.dirname(__file__), '..', '..', 'data', 'sonar-resources.gresource'),
+        'data/sonar-resources.gresource'  # Development fallback
     ]
     
     for resource_path in resource_paths:
@@ -42,7 +42,7 @@ def _load_resources():
 # Load resources immediately
 _load_resources()
 
-from .main_window import EchoWindow  # noqa: E402
+from .main_window import SonarWindow  # noqa: E402
 from .models import RequestStorage  # noqa: E402
 from .preferences import PreferencesDialog  # noqa: E402
 from .server import WebhookServer  # noqa: E402
@@ -56,13 +56,13 @@ logging.basicConfig(
 logger = logging.getLogger(__name__)
 
 
-class EchoApplication(Adw.Application):
-    """The main Echo application."""
+class SonarApplication(Adw.Application):
+    """The main Sonar application."""
 
     def __init__(self) -> None:
         """Initialize the application."""
         super().__init__(
-            application_id="io.github.tobagin.echo",
+            application_id="io.github.tobagin.sonar",
             flags=Gio.ApplicationFlags.DEFAULT_FLAGS
         )
 
@@ -74,7 +74,7 @@ class EchoApplication(Adw.Application):
         self.tunnel_manager = TunnelManager()
 
         # Window reference
-        self.window: EchoWindow | None = None
+        self.window: SonarWindow | None = None
 
         # Connect signals
         self.connect("activate", self.on_activate)
@@ -149,7 +149,7 @@ class EchoApplication(Adw.Application):
     def on_activate(self, app: Adw.Application) -> None:
         """Handle application activation."""
         if not self.window:
-            self.window = EchoWindow(
+            self.window = SonarWindow(
                 application=app,
                 storage=self.storage,
                 server=self.server,
@@ -185,16 +185,16 @@ class EchoApplication(Adw.Application):
     def on_about_action(self, action: Gio.SimpleAction, param: None) -> None:
         """Handle about action."""
         about = Adw.AboutDialog(
-            application_name="Echo",
-            application_icon="io.github.tobagin.echo",
+            application_name="Sonar",
+            application_icon="io.github.tobagin.sonar",
             developer_name="Thiago Fernandes",
-            version="1.0.2",
+            version="1.0.3",
             developers=["Thiago Fernandes https://github.com/tobagin"],
             copyright="© 2025 Thiago Fernandes",
             license_type=Gtk.License.GPL_3_0,
-            website="https://github.com/tobagin/echo",
-            support_url="https://github.com/tobagin/echo/discussions",
-            issue_url="https://github.com/tobagin/echo/issues",
+            website="https://github.com/tobagin/sonar",
+            support_url="https://github.com/tobagin/sonar/discussions",
+            issue_url="https://github.com/tobagin/sonar/issues",
             comments="Desktop developer utility for capturing and inspecting webhook requests",
             # Add more detailed information
             translator_credits="""Thiago Fernandes""",
@@ -204,9 +204,9 @@ class EchoApplication(Adw.Application):
         # Present dialog with transient parent
         
         # Add additional links that appear in the Details section
-        about.add_link("Report Issues", "https://github.com/tobagin/echo/issues")
-        about.add_link("Discussions", "https://github.com/tobagin/echo/discussions")
-        about.add_link("Releases", "https://github.com/tobagin/echo/releases")
+        about.add_link("Report Issues", "https://github.com/tobagin/sonar/issues")
+        about.add_link("Discussions", "https://github.com/tobagin/sonar/discussions")
+        about.add_link("Releases", "https://github.com/tobagin/sonar/releases")
         
         # Add credit for technologies used
         about.add_credit_section("Built With", [
@@ -278,7 +278,7 @@ class EchoApplication(Adw.Application):
 def main() -> int:
     """Main entry point."""
     try:
-        app = EchoApplication()
+        app = SonarApplication()
         exit_code = app.run(sys.argv)
         return exit_code
     except Exception as e:

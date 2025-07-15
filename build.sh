@@ -1,11 +1,11 @@
 #!/bin/bash
-# Convenience script for building the Echo webhook inspector application
+# Convenience script for building the Sonar webhook inspector application
 
 set -e
 
 # Configuration
-APP_ID="io.github.tobagin.echo"
-PROJECT_NAME="Echo"
+APP_ID="io.github.tobagin.sonar"
+PROJECT_NAME="Sonar"
 BUILD_DIR=".flatpak-builder"
 REPO_DIR="repo"
 
