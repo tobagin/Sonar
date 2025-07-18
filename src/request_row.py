@@ -3,7 +3,6 @@ Request row widget for displaying webhook requests.
 """
 
 import json
-import logging
 
 import gi
 
@@ -15,8 +14,9 @@ from gi.repository import Adw, Gdk, GObject, Gtk  # noqa: E402
 
 from .models import WebhookRequest  # noqa: E402
 from .input_sanitizer import sanitize_for_display  # noqa: E402
+from .logging_config import get_logger  # noqa: E402
 
-logger = logging.getLogger(__name__)
+logger = get_logger(__name__)
 
 
 @Gtk.Template(resource_path="/io/github/tobagin/sonar/ui/request_row.ui")

@@ -2,7 +2,6 @@
 Ngrok tunnel manager for creating public URLs.
 """
 
-import logging
 import os
 import threading
 
@@ -51,8 +50,9 @@ except ImportError:
 
 from .models import TunnelStatus
 from .error_handler import process_error, validate_port, ErrorCategory
+from .logging_config import get_logger
 
-logger = logging.getLogger(__name__)
+logger = get_logger(__name__)
 
 
 class TunnelManager:

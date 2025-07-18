@@ -3,3 +3,4 @@ PRPs/
 .flatpak-builder
 flatpak-build
 repo
+.pytest_cache

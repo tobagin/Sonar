@@ -2,11 +2,12 @@
 Error handling utilities for user-friendly error messages and recovery.
 """
 
-import logging
 import re
 from typing import Dict, List, Optional, Tuple, Union
 
-logger = logging.getLogger(__name__)
+from .logging_config import get_logger
+
+logger = get_logger(__name__)
 
 
 class ErrorCategory:

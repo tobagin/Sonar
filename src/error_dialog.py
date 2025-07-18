@@ -2,7 +2,6 @@
 Error dialog utilities for displaying user-friendly errors in the UI.
 """
 
-import logging
 from typing import Optional
 
 import gi
@@ -13,8 +12,9 @@ gi.require_version("Adw", "1")
 from gi.repository import Adw, Gtk
 
 from .error_handler import UserError, ErrorSeverity
+from .logging_config import get_logger
 
-logger = logging.getLogger(__name__)
+logger = get_logger(__name__)
 
 
 class ErrorDialog:

@@ -47,13 +47,17 @@ from .models import RequestStorage  # noqa: E402
 from .preferences import PreferencesDialog  # noqa: E402
 from .server import WebhookServer  # noqa: E402
 from .tunnel import TunnelManager  # noqa: E402
+from .logging_config import configure_logging, get_logger  # noqa: E402
+from . import __version__  # noqa: E402
 
-# Set up logging
-logging.basicConfig(
-    level=logging.INFO,
-    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
+# Set up centralized logging
+configure_logging(
+    log_level='INFO',
+    log_to_file=False,  # Can be enabled via preferences
+    console_logging=True,
+    detailed_logging=False
 )
-logger = logging.getLogger(__name__)
+logger = get_logger(__name__)
 
 
 class SonarApplication(Adw.Application):
@@ -188,7 +192,7 @@ class SonarApplication(Adw.Application):
             application_name="Sonar",
             application_icon="io.github.tobagin.sonar",
             developer_name="Thiago Fernandes",
-            version="1.0.5",
+            version=__version__,
             developers=["Thiago Fernandes https://github.com/tobagin"],
             copyright="© 2025 Thiago Fernandes",
             license_type=Gtk.License.GPL_3_0,

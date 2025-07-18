@@ -4,7 +4,6 @@ FastAPI server for receiving webhook requests.
 
 import asyncio
 import json
-import logging
 import threading
 from collections.abc import Callable
 from typing import Any
@@ -15,8 +14,10 @@ from fastapi.responses import JSONResponse
 
 from .models import RequestStorage, WebhookRequest
 from .input_sanitizer import sanitize_webhook_data
+from .logging_config import get_logger
+from . import __version__
 
-logger = logging.getLogger(__name__)
+logger = get_logger(__name__)
 
 
 class WebhookServer:
@@ -25,7 +26,7 @@ class WebhookServer:
     def __init__(self, request_storage: RequestStorage) -> None:
         """Initialize the webhook server."""
         self.storage = request_storage
-        self.app = FastAPI(title="Sonar Webhook Server", version="1.0.5")
+        self.app = FastAPI(title="Sonar Webhook Server", version=__version__)
         self.server: uvicorn.Server | None = None
         self.server_thread: threading.Thread | None = None
         self.port = 8000
@@ -51,7 +52,7 @@ class WebhookServer:
             """Root endpoint."""
             return {
                 "message": "Sonar Webhook Server",
-                "version": "1.0.4",
+                "version": __version__,
                 "info": "Accepts requests on any endpoint path",
                 "supported_methods": ["GET", "POST", "PUT", "DELETE", "PATCH", "HEAD", "OPTIONS"],
                 "examples": ["/webhook", "/api/events", "/stripe-webhook", "/github-webhook"]

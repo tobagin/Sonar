@@ -2,7 +2,6 @@
 Main window implementation for Sonar.
 """
 
-import logging
 import threading
 
 import gi
@@ -19,8 +18,9 @@ from .server import WebhookServer  # noqa: E402
 from .tunnel import TunnelManager  # noqa: E402
 from .error_handler import process_error, ErrorCategory  # noqa: E402
 from .error_dialog import show_error_dialog, show_error_toast  # noqa: E402
+from .logging_config import get_logger  # noqa: E402
 
-logger = logging.getLogger(__name__)
+logger = get_logger(__name__)
 
 
 @Gtk.Template(resource_path="/io/github/tobagin/sonar/ui/main_window.ui")

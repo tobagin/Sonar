@@ -4,12 +4,13 @@ Input validation and sanitization for webhook data.
 
 import html
 import json
-import logging
 import re
 from typing import Any, Dict, List, Optional, Tuple, Union
 from urllib.parse import unquote
 
-logger = logging.getLogger(__name__)
+from .logging_config import get_logger
+
+logger = get_logger(__name__)
 
 
 class SanitizationConfig:

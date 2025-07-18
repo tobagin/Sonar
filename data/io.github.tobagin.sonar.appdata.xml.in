@@ -56,7 +56,7 @@
   <update_contact>tobagin@example.com</update_contact>
   
   <releases>
-    <release version="1.0.5" date="2025-07-15">
+    <release version="@VERSION@" date="@DATE@">
       <description>
         <p>
           UI and portal improvements: Updated export functionality to use Flatpak
