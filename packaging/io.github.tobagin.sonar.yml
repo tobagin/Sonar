@@ -112,4 +112,4 @@ modules:
       - type: git
         url: https://github.com/tobagin/Sonar.git
         tag: v1.0.6
-        commit: 2e62c68c19c3bf1e6aef47e0bd44d43b5ffdbea4
+        commit: e5cc6b33005ae40efa4b5182a984ebcd194d0660
