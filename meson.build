@@ -55,7 +55,7 @@ python3.install_sources([
   'src/error_handler.py',
   'src/error_dialog.py',
   'src/input_sanitizer.py',
-  'src/_version.py',
+  'src/logging_config.py',
 ], subdir: 'sonar')
 
 # Post-install script
