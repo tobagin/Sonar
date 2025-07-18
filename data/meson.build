@@ -16,9 +16,18 @@ if desktop_utils.found()
   )
 endif
 
-# AppData file
-appdata_file = i18n.merge_file(
+# AppData file - first configure variables, then merge translations
+appdata_configured = configure_file(
   input: 'io.github.tobagin.sonar.appdata.xml.in',
+  output: 'io.github.tobagin.sonar.appdata.xml.configured',
+  configuration: {
+    'VERSION': meson.project_version(),
+    'DATE': '2025-07-18'
+  }
+)
+
+appdata_file = i18n.merge_file(
+  input: appdata_configured,
   output: 'io.github.tobagin.sonar.appdata.xml',
   po_dir: '../po',
   install: true,
