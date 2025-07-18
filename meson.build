@@ -1,5 +1,5 @@
 project('sonar', 'c',
-  version: '1.0.6',
+  version: '1.0.7',
   meson_version: '>= 0.62.0',
   default_options: [ 'warning_level=2', 'werror=false', ],
 )
@@ -40,6 +40,9 @@ conf.set('PKGDATADIR', pkgdatadir)
 subdir('data')
 subdir('src')
 subdir('po')
+
+# Store reference to generated version file
+version_file = files('src/_version.py.in')
 
 # Install Python modules
 python3.install_sources([
