@@ -46,5 +46,11 @@
       <description>Ngrok region to use for tunnels</description>
     </key>
     
+    <key name="ngrok-auth-token" type="s">
+      <default>""</default>
+      <summary>Ngrok auth token</summary>
+      <description>Ngrok authentication token for tunnel creation</description>
+    </key>
+    
   </schema>
 </schemalist>

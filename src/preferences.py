@@ -9,8 +9,9 @@ import gi
 
 gi.require_version("Gtk", "4.0")
 gi.require_version("Adw", "1")
+gi.require_version("Gio", "2.0")
 
-from gi.repository import Adw, Gtk  # noqa: E402
+from gi.repository import Adw, Gtk, Gio  # noqa: E402
 
 from .logging_config import get_logger, set_log_level, get_current_level, add_file_logging, remove_file_logging, configure_retention_policy, get_retention_info, cleanup_logs, cleanup_logs_by_age, cleanup_logs_by_size, compress_all_logs, get_cleanup_statistics, emergency_cleanup  # noqa: E402
 
@@ -23,6 +24,9 @@ class PreferencesDialog(Adw.PreferencesDialog):
     def __init__(self, parent: Optional[Gtk.Widget] = None, tunnel_manager=None, ui_update_callback=None) -> None:
         """Initialize the preferences dialog."""
         super().__init__()
+        
+        # Initialize GSettings
+        self.settings = Gio.Settings.new("io.github.tobagin.sonar")
         
         # Set transient parent if provided
         if parent:
@@ -207,8 +211,8 @@ class PreferencesDialog(Adw.PreferencesDialog):
     
     def _load_preferences(self) -> None:
         """Load current preferences."""
-        # Load auth token from environment
-        auth_token = os.getenv("NGROK_AUTHTOKEN", "")
+        # Load auth token from GSettings
+        auth_token = self.settings.get_string("ngrok-auth-token")
         if auth_token:
             self.auth_token_row.set_text(auth_token)
         
@@ -227,59 +231,24 @@ class PreferencesDialog(Adw.PreferencesDialog):
     def _on_auth_token_changed(self, entry: Adw.PasswordEntryRow, param) -> None:
         """Handle auth token change."""
         token = entry.get_text().strip()
+        
+        # Save to GSettings
+        self.settings.set_string("ngrok-auth-token", token)
+        
         if token:
             # Set environment variable (for current session)
             os.environ["NGROK_AUTHTOKEN"] = token
-            logger.info("Ngrok auth token updated")
-            
-            # Save to config file for persistence
-            self._save_to_config_file(token)
-            
-            # Trigger immediate UI update if callback is available
-            if self._ui_update_callback:
-                from gi.repository import GLib
-                GLib.idle_add(self._ui_update_callback)
-            
-            logger.info("Ngrok auth token saved")
+            logger.info("Ngrok auth token updated and saved to GSettings")
         else:
             # Remove from environment
             if "NGROK_AUTHTOKEN" in os.environ:
                 del os.environ["NGROK_AUTHTOKEN"]
-            logger.info("Ngrok auth token removed")
-            
-            # Remove from config file
-            self._remove_from_config_file()
-            
-            # Trigger immediate UI update if callback is available
-            if self._ui_update_callback:
-                from gi.repository import GLib
-                GLib.idle_add(self._ui_update_callback)
-    
-    def _save_to_config_file(self, token: str) -> None:
-        """Save token to a config file."""
-        try:
-            # Create .config directory if it doesn't exist
-            config_dir = os.path.expanduser("~/.config/sonar")
-            os.makedirs(config_dir, exist_ok=True)
-            
-            # Write token to config file
-            config_file = os.path.join(config_dir, "config")
-            with open(config_file, "w") as f:
-                f.write(f"NGROK_AUTHTOKEN={token}\n")
-            
-            logger.info(f"Auth token saved to {config_file}")
-        except Exception as e:
-            logger.error(f"Failed to save auth token to config file: {e}")
-    
-    def _remove_from_config_file(self) -> None:
-        """Remove token from config file."""
-        try:
-            config_file = os.path.expanduser("~/.config/sonar/config")
-            if os.path.exists(config_file):
-                os.remove(config_file)
-                logger.info(f"Auth token config file removed: {config_file}")
-        except Exception as e:
-            logger.error(f"Failed to remove auth token config file: {e}")
+            logger.info("Ngrok auth token removed and cleared from GSettings")
+        
+        # Trigger immediate UI update if callback is available
+        if self._ui_update_callback:
+            from gi.repository import GLib
+            GLib.idle_add(self._ui_update_callback)
     
     def _on_open_ngrok_clicked(self, button: Gtk.Button) -> None:
         """Handle open ngrok website button click."""

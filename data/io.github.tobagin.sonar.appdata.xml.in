@@ -52,17 +52,26 @@
   <url type="bugtracker">https://github.com/tobagin/sonar/issues</url>
   <url type="help">https://github.com/tobagin/sonar/wiki</url>
   
-  <developer_name>tobagin</developer_name>
-  <update_contact>tobagin@example.com</update_contact>
+  <developer_name>Thiago Fernandes</developer_name>
+  <update_contact>140509353+tobagin@users.noreply.github.com</update_contact>
   
   <releases>
     <release version="@VERSION@" date="@DATE@">
       <description>
         <p>
-          UI and portal improvements: Updated export functionality to use Flatpak
-          portal for better sandboxing. Fixed statistics button icon display
-          issue by replacing unavailable chart-line-symbolic with standard
-          dialog-information-symbolic icon.
+          Settings and persistence improvements: Migrated auth token storage from config files 
+          to proper GSettings/GSchema system for better GNOME integration and Flatpak sandboxing. 
+          Fixed auth token persistence issues and version import errors. Updated developer 
+          attribution to use proper name and contact information.
+        </p>
+      </description>
+    </release>
+    <release version="1.0.7" date="2025-07-21">
+      <description>
+        <p>
+          Critical fix release: Resolved ModuleNotFoundError for _version.py by installing 
+          it in the correct Python package location. Simplified launcher script and fixed 
+          config directory path mismatches that prevented auth token persistence.
         </p>
       </description>
     </release>

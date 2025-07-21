@@ -4,6 +4,10 @@ Ngrok tunnel manager for creating public URLs.
 
 import os
 import threading
+import gi
+
+gi.require_version("Gio", "2.0")
+from gi.repository import Gio
 
 try:
     from dotenv import load_dotenv
@@ -65,6 +69,9 @@ class TunnelManager:
         self.status = TunnelStatus()
         self._lock = threading.Lock()
         self.auth_token_set = False
+        
+        # Initialize GSettings
+        self.settings = Gio.Settings.new("io.github.tobagin.sonar")
 
         # Check if ngrok is available
         if not NGROK_AVAILABLE:
@@ -96,26 +103,20 @@ class TunnelManager:
             )
 
     def _load_auth_token(self) -> str | None:
-        """Load auth token from environment or config file."""
+        """Load auth token from environment or GSettings."""
         # First try environment variable
         auth_token = os.getenv("NGROK_AUTHTOKEN")
         if auth_token:
             return auth_token
         
-        # Then try config file
+        # Then try GSettings
         try:
-            config_file = os.path.expanduser("~/.config/echo/config")
-            if os.path.exists(config_file):
-                with open(config_file, "r") as f:
-                    for line in f:
-                        line = line.strip()
-                        if line.startswith("NGROK_AUTHTOKEN="):
-                            token = line.split("=", 1)[1].strip()
-                            if token:
-                                os.environ["NGROK_AUTHTOKEN"] = token  # Set in environment for consistency
-                                return token
+            auth_token = self.settings.get_string("ngrok-auth-token")
+            if auth_token:
+                os.environ["NGROK_AUTHTOKEN"] = auth_token  # Set in environment for consistency
+                return auth_token
         except Exception as e:
-            logger.error(f"Failed to load auth token from config file: {e}")
+            logger.error(f"Failed to load auth token from GSettings: {e}")
         
         return None
 

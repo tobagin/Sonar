@@ -8,9 +8,10 @@ import gi
 
 gi.require_version("Gtk", "4.0")
 gi.require_version("Adw", "1")
+gi.require_version("Gio", "2.0")
 
 # GTK imports must come after gi.require_version
-from gi.repository import Adw, Gdk, GLib, Gtk  # noqa: E402
+from gi.repository import Adw, Gdk, GLib, Gtk, Gio  # noqa: E402
 
 from .models import RequestStorage, TunnelStatus, WebhookRequest  # noqa: E402
 from .request_row import RequestRow  # noqa: E402
@@ -75,6 +76,9 @@ class SonarWindow(Adw.ApplicationWindow):
         self.storage = storage
         self.server = server
         self.tunnel_manager = tunnel_manager
+        
+        # Initialize GSettings
+        self.settings = Gio.Settings.new("io.github.tobagin.sonar")
 
         # State
         self.tunnel_active = False
@@ -358,16 +362,11 @@ class SonarWindow(Adw.ApplicationWindow):
         import os
         auth_token = os.getenv("NGROK_AUTHTOKEN")
         if not auth_token:
-            # Try loading from config file
+            # Try loading from GSettings
             try:
-                config_file = os.path.expanduser("~/.config/echo/config")
-                if os.path.exists(config_file):
-                    with open(config_file, "r") as f:
-                        for line in f:
-                            line = line.strip()
-                            if line.startswith("NGROK_AUTHTOKEN="):
-                                auth_token = line.split("=", 1)[1].strip()
-                                break
+                auth_token = self.settings.get_string("ngrok-auth-token")
+                if auth_token:
+                    os.environ["NGROK_AUTHTOKEN"] = auth_token  # Set in environment for consistency
             except Exception:
                 pass
         
